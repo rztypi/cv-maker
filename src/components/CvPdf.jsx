@@ -120,6 +120,19 @@ function Section({ title, children }) {
   );
 }
 
+function GenInfo({ name, email, phone, address, links }) {
+  const detailsArray = [email, phone, address, ...links].filter(
+    (item) => !!item
+  );
+  return (
+    <View style={styles.genInfo}>
+      <Text style={styles.name}>{name}</Text>
+      <Text style={styles.details}>{detailsArray.join(" | ")}</Text>
+      <Hr />
+    </View>
+  );
+}
+
 function WorkItem({
   isNotLast,
   name,
@@ -188,13 +201,13 @@ function CvPdf({ cvData }) {
   return (
     <Document>
       <Page size="LETTER" style={styles.page}>
-        <View style={styles.genInfo}>
-          <Text style={styles.name}>{cvData.name}</Text>
-          <Text style={styles.details}>
-            {cvData.email} | {cvData.phone}
-          </Text>
-        </View>
-        <Hr />
+        <GenInfo
+          name={cvData.name}
+          email={cvData.email}
+          phone={cvData.phone}
+          address={cvData.address}
+          links={cvData.links}
+        ></GenInfo>
         <Section title="WORK EXPERIENCE">
           {cvData.work.map((item, index) => (
             <WorkItem
