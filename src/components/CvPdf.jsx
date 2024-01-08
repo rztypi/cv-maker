@@ -9,6 +9,7 @@ import {
   Svg,
   Line,
 } from "@react-pdf/renderer";
+import { Fragment } from "react";
 
 Font.register({
   family: "Garamond",
@@ -36,46 +37,21 @@ const styles = StyleSheet.create({
   details: {
     fontSize: 16,
   },
-  section: {},
   bold: {
     fontWeight: "bold",
   },
   italic: {
     fontStyle: "italic",
   },
-  workItem: {},
-  workHeader: {
-    flexDirection: "row",
-  },
-  workHeaderColumn1: {
-    flexGrow: 2,
-  },
-  workHeaderColumn2: {
-    flexGrow: 1,
-    alignItems: "flex-end",
-  },
-  workName: {
+  itemBoldHeader: {
     fontWeight: "bold",
-  },
-  workDate: {
-    fontWeight: "bold",
-  },
-  workTitle: {
-    fontStyle: "italic",
-  },
-  workAddress: {
-    fontStyle: "italic",
-  },
-  educationItem: {},
-  educationHeader: {
     flexDirection: "row",
+    justifyContent: "space-between",
   },
-  educationHeaderColumn1: {
-    flexGrow: 2,
-  },
-  educationHeaderColumn2: {
-    flexGrow: 1,
-    alignItems: "flex-end",
+  itemItalicHeader: {
+    fontStyle: "italic",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });
 
@@ -112,9 +88,9 @@ function BulletItem({ text }) {
 
 function Section({ title, children }) {
   return (
-    <View style={styles.section}>
+    <View>
       <Br />
-      <Text style={styles.bold}>{title}</Text>
+      <Text style={styles.bold}>{title.toUpperCase()}</Text>
       <Hr />
       {children}
     </View>
@@ -122,15 +98,14 @@ function Section({ title, children }) {
 }
 
 function GenInfo({ name, email, phone, address, links }) {
-  const mappedLinks = links.map((link, index) => (
-    <>
-      <Link key={link.key} src={link.linkRef}>
-        {link.linkName}
-      </Link>
+  const mappedLinks = links.map((linkObj, index) => (
+    <Fragment key={linkObj.key}>
+      <Link src={linkObj.linkRef}>{linkObj.linkName}</Link>
       {index < links.length - 1 && " | "}
-    </>
+    </Fragment>
   ));
   const detailsArray = [email, phone, address].filter((item) => !!item);
+
   return (
     <View style={styles.genInfo}>
       <Text style={styles.name}>{name}</Text>
@@ -156,18 +131,16 @@ function WorkItem({
   details,
 }) {
   return (
-    <View style={styles.workItem}>
-      <View style={styles.workHeader}>
-        <View style={styles.workHeaderColumn1}>
-          <Text style={styles.workName}>{name}</Text>
-          <Text style={styles.workTitle}>{title}</Text>
-        </View>
-        <View style={styles.workHeaderColumn2}>
-          <Text style={styles.workName}>
-            {startMonth} {startYear} - {endMonth} {endYear}
-          </Text>
-          <Text style={styles.workAddress}>{address}</Text>
-        </View>
+    <View>
+      <View style={styles.itemBoldHeader}>
+        <Text>{name}</Text>
+        <Text>
+          {startMonth} {startYear} - {endMonth} {endYear}
+        </Text>
+      </View>
+      <View style={styles.itemItalicHeader}>
+        <Text>{title}</Text>
+        <Text>{address}</Text>
       </View>
       {details.map((detail) => (
         <BulletItem key={detail.key} text={detail.text} />
@@ -187,18 +160,16 @@ function EducationItem({
   details,
 }) {
   return (
-    <View style={styles.educationItem}>
-      <View style={styles.educationHeader}>
-        <View style={styles.educationHeaderColumn1}>
-          <Text style={styles.bold}>{name}</Text>
-          <Text style={styles.italic}>{degree}</Text>
-        </View>
-        <View style={styles.educationHeaderColumn2}>
-          <Text style={styles.bold}>
-            {month} {year}
-          </Text>
-          <Text style={styles.italic}>{address}</Text>
-        </View>
+    <View>
+      <View style={styles.itemBoldHeader}>
+        <Text>{name}</Text>
+        <Text>
+          {month} {year}
+        </Text>
+      </View>
+      <View style={styles.itemItalicHeader}>
+        <Text>{degree}</Text>
+        <Text>{address}</Text>
       </View>
       {details.map((detail) => (
         <BulletItem key={detail.key} text={detail.text} />
@@ -219,7 +190,7 @@ function CvPdf({ cvData }) {
           address={cvData.address}
           links={cvData.links}
         ></GenInfo>
-        <Section title="WORK EXPERIENCE">
+        <Section title="work experience">
           {cvData.work.map((item, index) => (
             <WorkItem
               key={item.key}
@@ -228,7 +199,7 @@ function CvPdf({ cvData }) {
             />
           ))}
         </Section>
-        <Section title="EDUCATION">
+        <Section title="education">
           {cvData.education.map((item, index) => (
             <EducationItem
               key={item.key}
