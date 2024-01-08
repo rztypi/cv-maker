@@ -40,3 +40,16 @@ form {
   display: flex;
   flex-direction: column;
 }
+
+form label {
+  font-size: 0.9rem;
+}
+
+form input {
+  height: 1.5rem;
+  margin-bottom: 12px;
+}
+
+form button[type="submit"] {
+  margin-bottom: 12px;
+}
