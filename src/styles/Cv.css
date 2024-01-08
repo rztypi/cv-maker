@@ -1,0 +1,11 @@
+#cv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pdfviewer {
+  width: 90%;
+  aspect-ratio: 8.5 / 11;
+  border: none;
+}
