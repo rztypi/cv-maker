@@ -9,7 +9,13 @@ const defaultCvData = {
   email: "your_email@here.com",
   phone: "0123456789",
   address: "Address",
-  links: ["website.com"],
+  links: [
+    {
+      key: uuidv4(),
+      linkName: "website.com",
+      linkRef: "https://www.website.com/",
+    },
+  ],
   work: [
     {
       key: uuidv4(),

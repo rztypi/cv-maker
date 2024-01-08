@@ -1,6 +1,7 @@
 import {
   Page,
   Text,
+  Link,
   View,
   Document,
   StyleSheet,
@@ -121,13 +122,23 @@ function Section({ title, children }) {
 }
 
 function GenInfo({ name, email, phone, address, links }) {
-  const detailsArray = [email, phone, address, ...links].filter(
-    (item) => !!item
-  );
+  const mappedLinks = links.map((link, index) => (
+    <>
+      <Link key={link.key} src={link.linkRef}>
+        {link.linkName}
+      </Link>
+      {index < links.length - 1 && " | "}
+    </>
+  ));
+  const detailsArray = [email, phone, address].filter((item) => !!item);
   return (
     <View style={styles.genInfo}>
       <Text style={styles.name}>{name}</Text>
-      <Text style={styles.details}>{detailsArray.join(" | ")}</Text>
+      <Text style={styles.details}>
+        {detailsArray.join(" | ")}
+        {detailsArray.length > 0 && mappedLinks.length > 0 && " | "}
+        {mappedLinks}
+      </Text>
       <Hr />
     </View>
   );
