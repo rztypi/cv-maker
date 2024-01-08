@@ -1,4 +1,5 @@
 import { useState } from "react";
+import GenInfo from "./GenInfo.jsx";
 import "../styles/Form.css";
 
 function Accordion({ title, children }) {
@@ -16,36 +17,6 @@ function Accordion({ title, children }) {
       </div>
       {isOpen && <div className="accordionBody">{children}</div>}
     </div>
-  );
-}
-
-function GenInfo({ cvData, setCvData }) {
-  function handleSaveGenInfo(event) {
-    event.preventDefault();
-    const newCvData = {
-      ...cvData,
-      name: document.querySelector("#name").value,
-      email: document.querySelector("#email").value,
-      phone: document.querySelector("#phone").value,
-      address: document.querySelector("#address").value,
-    };
-    setCvData(newCvData);
-  }
-
-  return (
-    <>
-      <form onSubmit={handleSaveGenInfo}>
-        <label htmlFor="name">Name</label>
-        <input type="text" id="name" defaultValue={cvData.name} />
-        <label htmlFor="email">Email</label>
-        <input type="text" id="email" defaultValue={cvData.email} />
-        <label htmlFor="phone">Phone</label>
-        <input type="text" id="phone" defaultValue={cvData.phone} />
-        <label htmlFor="address">Address</label>
-        <input type="text" id="address" defaultValue={cvData.address} />
-        <button type="submit">Save</button>
-      </form>
-    </>
   );
 }
 

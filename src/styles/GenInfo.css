@@ -1,0 +1,15 @@
+.addLink {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.linkDiv {
+  display: flex;
+  gap: 12px;
+}
+
+.linkDiv > * {
+  flex-grow: 1;
+  width: 100%;
+}
