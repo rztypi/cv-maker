@@ -26,6 +26,10 @@ function GenInfo({ cvData, setCvData }) {
     );
   }
 
+  function handleRemoveLink(key) {
+    setCvLinks(cvLinks.filter((linkObj) => linkObj.key !== key));
+  }
+
   function handleSaveGenInfo(event) {
     event.preventDefault();
     const newCvData = {
@@ -75,6 +79,9 @@ function GenInfo({ cvData, setCvData }) {
               handleChangeLink(event, linkObj.key, "linkRef")
             }
           />
+          <button type="button" onClick={() => handleRemoveLink(linkObj.key)}>
+            <span className="material-symbols-outlined">delete</span>
+          </button>
         </div>
       ))}
       <button type="button" className="addLink" onClick={handleAddLink}>

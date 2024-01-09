@@ -5,11 +5,30 @@
 }
 
 .linkDiv {
+  position: relative;
   display: flex;
   gap: 12px;
 }
 
-.linkDiv > * {
+.linkDiv > input,
+.linkDiv > label {
   flex-grow: 1;
   width: 100%;
+}
+
+.linkDiv > button {
+  position: absolute;
+  right: -36px;
+  height: 1.5rem;
+  width: 1.5rem;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+}
+
+.linkDiv > button > span {
+  font-size: 1.4rem;
 }
