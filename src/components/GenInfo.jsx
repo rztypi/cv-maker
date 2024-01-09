@@ -3,23 +3,15 @@ import { v4 as uuidv4 } from "uuid";
 import "../styles/GenInfo.css";
 
 function GenInfo({ cvData, setCvData }) {
-  const [cvLinks, setCvLinks] = useState(
-    cvData.links.map((linkObj) => {
-      return { ...linkObj };
-    })
-  );
+  const [cvLinks, setCvLinks] = useState([...cvData.links]);
 
   function handleAddLink() {
     setCvLinks(
-      cvLinks
-        .map((linkObj) => {
-          return { ...linkObj };
-        })
-        .concat({
-          key: uuidv4(),
-          linkName: "",
-          linkRef: "",
-        })
+      cvLinks.concat({
+        key: uuidv4(),
+        linkName: "",
+        linkRef: "",
+      })
     );
   }
 
@@ -29,7 +21,7 @@ function GenInfo({ cvData, setCvData }) {
         if (linkObj.key === key) {
           return { ...linkObj, [prop]: event.target.value };
         }
-        return { ...linkObj };
+        return linkObj;
       })
     );
   }
