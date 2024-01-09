@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import "../styles/GenInfo.css";
 
 function GenInfo({ cvData, setCvData }) {
@@ -7,6 +8,20 @@ function GenInfo({ cvData, setCvData }) {
       return { ...linkObj };
     })
   );
+
+  function handleAddLink() {
+    setCvLinks(
+      cvLinks
+        .map((linkObj) => {
+          return { ...linkObj };
+        })
+        .concat({
+          key: uuidv4(),
+          linkName: "",
+          linkRef: "",
+        })
+    );
+  }
 
   function handleChangeLink(event, key, prop) {
     setCvLinks(
@@ -27,7 +42,9 @@ function GenInfo({ cvData, setCvData }) {
       email: document.querySelector("#email").value,
       phone: document.querySelector("#phone").value,
       address: document.querySelector("#address").value,
-      links: cvLinks,
+      links: cvLinks.filter(
+        (linkObj) => !!linkObj.linkName && !!linkObj.linkRef
+      ),
     };
     setCvData(newCvData);
   }
@@ -68,7 +85,7 @@ function GenInfo({ cvData, setCvData }) {
           />
         </div>
       ))}
-      <button type="button" className="addLink">
+      <button type="button" className="addLink" onClick={handleAddLink}>
         Add Link <span className="material-symbols-outlined">link</span>
       </button>
       <button type="submit">Save</button>
