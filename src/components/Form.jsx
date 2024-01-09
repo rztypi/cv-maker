@@ -4,16 +4,19 @@ import "../styles/Form.css";
 
 function Accordion({ title, children }) {
   const [isOpen, setIsOpen] = useState(false);
+
+  let accordionClass = "accordion";
+  if (isOpen) {
+    accordionClass += " open";
+  }
+
   return (
-    <div className="accordion">
-      <div className="accordionHead">
-        <span
-          className="material-symbols-outlined expand"
-          onClick={() => setIsOpen(!isOpen)}
-        >
+    <div className={accordionClass}>
+      <div className="accordionHead" onClick={() => setIsOpen(!isOpen)}>
+        <h3>{title}</h3>
+        <span className="material-symbols-outlined expandIcon">
           expand_more
         </span>
-        <h3>{title}</h3>
       </div>
       {isOpen && <div className="accordionBody">{children}</div>}
     </div>

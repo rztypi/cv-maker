@@ -48,6 +48,16 @@ h6 {
   src: url(../assets/poppins-v20-latin-regular.woff2);
 }
 
+/* Styles */
+
+* {
+  transition: all 0.15s, color 0s, font-size 0s;
+}
+
+:root {
+  color-scheme: dark;
+}
+
 body {
   font-family: "Poppins", sans-serif;
 }
