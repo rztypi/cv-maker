@@ -1,7 +1,29 @@
 import { useState } from "react";
+import { getYearMonthFromFormat, getFormatFromYearMonth } from "../utils.js";
 import "../styles/Work.css";
 
-function WorkItem({ workObj, handleSaveWork }) {
+function WorkItem({ workObj, activeKey }) {
+  function handleSaveWork(event) {
+    event.preventDefault();
+
+    const [startYear, startMonth] = getYearMonthFromFormat(
+      document.querySelector("#workStartDate").value
+    );
+    const [endYear, endMonth] = getYearMonthFromFormat(
+      document.querySelector("#workEndDate").value
+    );
+    const newWorkObj = {
+      key: activeKey,
+      name: document.querySelector("#workName").value,
+      startMonth,
+      startYear,
+      endMonth,
+      endYear,
+      title: document.querySelector("#workTitle").value,
+      address: document.querySelector("#workAddress").value,
+    };
+  }
+
   return (
     <form onSubmit={handleSaveWork} id="workForm">
       <div className="inputLabel">
@@ -20,11 +42,25 @@ function WorkItem({ workObj, handleSaveWork }) {
         <div className="dateRow">
           <div className="inputLabel">
             <label htmlFor="workStartDate">Start Date</label>
-            <input type="month" id="workStartDate" />
+            <input
+              type="month"
+              id="workStartDate"
+              defaultValue={getFormatFromYearMonth(
+                workObj.startYear,
+                workObj.startMonth
+              )}
+            />
           </div>
           <div className="inputLabel">
             <label htmlFor="workEndDate">End Date</label>
-            <input type="month" id="workEndDate" />
+            <input
+              type="month"
+              id="workEndDate"
+              defaultValue={getFormatFromYearMonth(
+                workObj.endYear,
+                workObj.endMonth
+              )}
+            />
           </div>
         </div>
       </div>
@@ -40,16 +76,12 @@ function WorkItem({ workObj, handleSaveWork }) {
 function Work({ cvData, setCvData }) {
   const [activeKey, setActiveKey] = useState(null);
 
-  function handleSaveWork(event) {
-    event.preventDefault();
-  }
-
   return (
     <div className="workDiv">
       {activeKey !== null ? (
         <WorkItem
           workObj={cvData.work.find((workObj) => workObj.key === activeKey)}
-          handleSaveWork={handleSaveWork}
+          activeKey={activeKey}
         ></WorkItem>
       ) : (
         <>
