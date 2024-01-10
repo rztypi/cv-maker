@@ -21,3 +21,69 @@
     margin-top: 6px;
   }
 }
+
+.detailsGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  label {
+    margin-bottom: -6px;
+  }
+
+  .detailsRow {
+    position: relative;
+    display: flex;
+
+    input {
+      width: 100%;
+    }
+  }
+
+  .addDetail {
+    align-self: center;
+    padding: 0 12px;
+    margin-top: 6px;
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    background-color: transparent;
+    border: none;
+    opacity: 0.8;
+    font-size: 0.9rem;
+
+    span {
+      font-size: 1.4rem;
+    }
+  }
+
+  .addDetail:hover {
+    opacity: 0.9;
+  }
+
+  .addDetail:active {
+    opacity: 1;
+  }
+}
+
+.removeItemBtn {
+  position: absolute;
+  right: -36px;
+  height: 1.5rem;
+  width: 1.5rem;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  opacity: 0.6;
+}
+
+.removeItemBtn:hover {
+  opacity: 0.9;
+}
+
+.removeItemBtn:active {
+  opacity: 1;
+}

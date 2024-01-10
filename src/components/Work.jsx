@@ -1,8 +1,35 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { getYearMonthFromFormat, getFormatFromYearMonth } from "../utils.js";
 import "../styles/Work.css";
 
-function WorkItem({ workObj, activeKey }) {
+function WorkItem({ workObj, activeKey, cvData, setCvData }) {
+  const [workDetails, setWorkDetails] = useState([...workObj.details]);
+
+  function handleAddDetail() {
+    setWorkDetails(
+      workDetails.concat({
+        key: uuidv4(),
+        text: "",
+      })
+    );
+  }
+
+  function handleChangeDetail(event, key) {
+    setWorkDetails(
+      workDetails.map((detailObj) => {
+        if (detailObj.key === key) {
+          return { ...detailObj, text: event.target.value };
+        }
+        return detailObj;
+      })
+    );
+  }
+
+  function handleRemoveDetail(key) {
+    setWorkDetails(workDetails.filter((detailObj) => detailObj.key !== key));
+  }
+
   function handleSaveWork(event) {
     event.preventDefault();
 
@@ -21,7 +48,18 @@ function WorkItem({ workObj, activeKey }) {
       endYear,
       title: document.querySelector("#workTitle").value,
       address: document.querySelector("#workAddress").value,
+      details: workDetails.filter((detailObj) => !!detailObj.text),
     };
+
+    setCvData({
+      ...cvData,
+      work: cvData.work.map((workObj) => {
+        if (workObj.key === activeKey) {
+          return newWorkObj;
+        }
+        return workObj;
+      }),
+    });
   }
 
   return (
@@ -68,6 +106,30 @@ function WorkItem({ workObj, activeKey }) {
         <label htmlFor="workAddress">Address</label>
         <input type="text" id="workAddress" defaultValue={workObj.address} />
       </div>
+      <div className="detailsGroup">
+        {workDetails.length > 0 && <label>Details</label>}
+        {workDetails.map((detailObj) => (
+          <div key={detailObj.key} className="detailsRow">
+            <input
+              type="text"
+              defaultValue={detailObj.text}
+              onChange={(event) => handleChangeDetail(event, detailObj.key)}
+            />
+            <button
+              type="button"
+              className="removeItemBtn"
+              onClick={() => handleRemoveDetail(detailObj.key)}
+            >
+              <span className="material-symbols-outlined deleteIcon">
+                delete
+              </span>
+            </button>
+          </div>
+        ))}
+        <button type="button" className="addDetail" onClick={handleAddDetail}>
+          <span className="material-symbols-outlined">add</span> add detail
+        </button>
+      </div>
       <button type="submit">Save</button>
     </form>
   );
@@ -82,6 +144,8 @@ function Work({ cvData, setCvData }) {
         <WorkItem
           workObj={cvData.work.find((workObj) => workObj.key === activeKey)}
           activeKey={activeKey}
+          cvData={cvData}
+          setCvData={setCvData}
         ></WorkItem>
       ) : (
         <>
