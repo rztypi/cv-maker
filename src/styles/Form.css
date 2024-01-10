@@ -71,11 +71,26 @@ form {
 }
 
 form label {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   opacity: 0.8;
 }
 
-form input {
+form input[type="text"] {
   height: 1.5rem;
   margin-bottom: 12px;
+}
+
+.inputLabel {
+  display: flex;
+  flex-direction: column;
+
+  input {
+    width: 100%;
+  }
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }

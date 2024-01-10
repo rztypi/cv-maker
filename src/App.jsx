@@ -19,7 +19,7 @@ const defaultCvData = {
   work: [
     {
       key: uuidv4(),
-      name: "Company Name",
+      name: "Company Name #1",
       startMonth: "Month",
       startYear: "Year",
       endMonth: "Month",
@@ -33,7 +33,7 @@ const defaultCvData = {
     },
     {
       key: uuidv4(),
-      name: "Company Name",
+      name: "Company Name #2",
       startMonth: "Month",
       startYear: "Year",
       endMonth: "Month",

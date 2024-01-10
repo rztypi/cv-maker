@@ -1,0 +1,24 @@
+.workDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.dateGroup {
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  .dateRow {
+    display: flex;
+    gap: 12px;
+
+    .inputLabel {
+      flex-grow: 1;
+    }
+  }
+
+  .checkbox {
+    margin-top: 6px;
+  }
+}

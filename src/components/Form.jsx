@@ -1,5 +1,6 @@
 import { useState } from "react";
 import GenInfo from "./GenInfo.jsx";
+import Work from "./Work.jsx";
 import "../styles/Form.css";
 
 function Accordion({ title, children }) {
@@ -32,7 +33,7 @@ function Form({ cvData, setCvData }) {
           <GenInfo cvData={cvData} setCvData={setCvData}></GenInfo>
         </Accordion>
         <Accordion title="Work Experience">
-          <h1>work experience form here</h1>
+          <Work cvData={cvData} setCvData={setCvData}></Work>
         </Accordion>
       </div>
     </div>
