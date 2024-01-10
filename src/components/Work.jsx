@@ -4,18 +4,14 @@ import "../styles/Work.css";
 function WorkItem({ workObj, handleSaveWork }) {
   return (
     <form onSubmit={handleSaveWork} id="workForm">
-      <label htmlFor={"workName" + workObj.key}>Company Name</label>
-      <input
-        type="text"
-        id={"workName" + workObj.key}
-        defaultValue={workObj.name}
-      />
-      <label htmlFor={"workTitle" + workObj.key}>Title</label>
-      <input
-        type="text"
-        id={"workTitle" + workObj.key}
-        defaultValue={workObj.title}
-      />
+      <div className="inputLabel">
+        <label htmlFor="workName">Company Name</label>
+        <input type="text" id="workName" defaultValue={workObj.name} />
+      </div>
+      <div className="inputLabel">
+        <label htmlFor="workTitle">Title</label>
+        <input type="text" id="workTitle" defaultValue={workObj.title} />
+      </div>
       <div className="dateGroup">
         <div className="checkbox">
           <input type="checkbox" id="present" />
@@ -23,21 +19,19 @@ function WorkItem({ workObj, handleSaveWork }) {
         </div>
         <div className="dateRow">
           <div className="inputLabel">
-            <label htmlFor="">Start Date</label>
-            <input type="month" />
+            <label htmlFor="workStartDate">Start Date</label>
+            <input type="month" id="workStartDate" />
           </div>
           <div className="inputLabel">
-            <label htmlFor="">End Date</label>
-            <input type="month" />
+            <label htmlFor="workEndDate">End Date</label>
+            <input type="month" id="workEndDate" />
           </div>
         </div>
       </div>
-      <label htmlFor={"workAddress" + workObj.key}>Address</label>
-      <input
-        type="text"
-        id={"workAddress" + workObj.key}
-        defaultValue={workObj.address}
-      />
+      <div className="inputLabel">
+        <label htmlFor="workAddress">Address</label>
+        <input type="text" id="workAddress" defaultValue={workObj.address} />
+      </div>
       <button type="submit">Save</button>
     </form>
   );
@@ -58,19 +52,21 @@ function Work({ cvData, setCvData }) {
           handleSaveWork={handleSaveWork}
         ></WorkItem>
       ) : (
-        cvData.work.map((workObj) => (
-          <button
-            key={workObj.key}
-            type="button"
-            onClick={() => {
-              setActiveKey(workObj.key);
-            }}
-          >
-            {workObj.name}
-          </button>
-        ))
+        <>
+          {cvData.work.map((workObj) => (
+            <button
+              key={workObj.key}
+              type="button"
+              onClick={() => {
+                setActiveKey(workObj.key);
+              }}
+            >
+              {workObj.name}
+            </button>
+          ))}
+          <button type="button">add work experience</button>
+        </>
       )}
-      <button type="button">add work experience</button>
     </div>
   );
 }

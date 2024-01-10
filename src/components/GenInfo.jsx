@@ -47,47 +47,59 @@ function GenInfo({ cvData, setCvData }) {
 
   return (
     <form onSubmit={handleSaveGenInfo} id="genInfoForm">
-      <label htmlFor="name">Name</label>
-      <input type="text" id="name" defaultValue={cvData.name} />
-      <label htmlFor="email">Email</label>
-      <input type="text" id="email" defaultValue={cvData.email} />
-      <label htmlFor="phone">Phone</label>
-      <input type="text" id="phone" defaultValue={cvData.phone} />
-      <label htmlFor="address">Address</label>
-      <input type="text" id="address" defaultValue={cvData.address} />
-      {cvLinks.length > 0 && (
-        <div className="linkDiv">
-          <label>Link Name</label>
-          <label>Link Ref</label>
-        </div>
-      )}
-      {cvLinks.map((linkObj) => (
-        <div key={linkObj.key} className="linkDiv">
-          <input
-            type="text"
-            className="linkName"
-            defaultValue={linkObj.linkName}
-            onChange={(event) =>
-              handleChangeLink(event, linkObj.key, "linkName")
-            }
-          />
-          <input
-            type="text"
-            className="linkRef"
-            defaultValue={linkObj.linkRef}
-            onChange={(event) =>
-              handleChangeLink(event, linkObj.key, "linkRef")
-            }
-          />
-          <button type="button" onClick={() => handleRemoveLink(linkObj.key)}>
-            <span className="material-symbols-outlined deleteIcon">delete</span>
-          </button>
-        </div>
-      ))}
-      <button type="button" className="addLink" onClick={handleAddLink}>
-        <span className="material-symbols-outlined linkIcon">link</span> add
-        link
-      </button>
+      <div className="inputLabel">
+        <label htmlFor="name">Name</label>
+        <input type="text" id="name" defaultValue={cvData.name} />
+      </div>
+      <div className="inputLabel">
+        <label htmlFor="email">Email</label>
+        <input type="text" id="email" defaultValue={cvData.email} />
+      </div>
+      <div className="inputLabel">
+        <label htmlFor="phone">Phone</label>
+        <input type="text" id="phone" defaultValue={cvData.phone} />
+      </div>
+      <div className="inputLabel">
+        <label htmlFor="address">Address</label>
+        <input type="text" id="address" defaultValue={cvData.address} />
+      </div>
+      <div className="linkGroup">
+        {cvLinks.length > 0 && (
+          <div className="linkRow">
+            <label>Link Name</label>
+            <label>Link Ref</label>
+          </div>
+        )}
+        {cvLinks.map((linkObj) => (
+          <div key={linkObj.key} className="linkRow">
+            <input
+              type="text"
+              className="linkName"
+              defaultValue={linkObj.linkName}
+              onChange={(event) =>
+                handleChangeLink(event, linkObj.key, "linkName")
+              }
+            />
+            <input
+              type="text"
+              className="linkRef"
+              defaultValue={linkObj.linkRef}
+              onChange={(event) =>
+                handleChangeLink(event, linkObj.key, "linkRef")
+              }
+            />
+            <button type="button" onClick={() => handleRemoveLink(linkObj.key)}>
+              <span className="material-symbols-outlined deleteIcon">
+                delete
+              </span>
+            </button>
+          </div>
+        ))}
+        <button type="button" className="addLink" onClick={handleAddLink}>
+          <span className="material-symbols-outlined linkIcon">link</span> add
+          link
+        </button>
+      </div>
       <button type="submit">Save</button>
     </form>
   );
