@@ -50,8 +50,8 @@ const defaultCvData = {
     {
       key: uuidv4(),
       name: "University Name",
-      month: "Graduation Month",
-      year: "Year",
+      month: "Jan",
+      year: "2000",
       degree: "Degree",
       address: "Address",
       details: [

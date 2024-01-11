@@ -12,12 +12,12 @@ function WorkItem({
   setWorkArray,
 }) {
   const workObj = workArray.find((workObj) => workObj.key === activeKey);
-  const [workDetails, setWorkDetails] = useState([...workObj.details]);
+  const [details, setDetails] = useState([...workObj.details]);
   const [present, setPresent] = useState(workObj.endYear === "Present");
 
   function handleAddDetail() {
-    setWorkDetails(
-      workDetails.concat({
+    setDetails(
+      details.concat({
         key: uuidv4(),
         text: "",
       })
@@ -25,8 +25,8 @@ function WorkItem({
   }
 
   function handleChangeDetail(event, key) {
-    setWorkDetails(
-      workDetails.map((detailObj) => {
+    setDetails(
+      details.map((detailObj) => {
         if (detailObj.key === key) {
           return { ...detailObj, text: event.target.value };
         }
@@ -36,7 +36,7 @@ function WorkItem({
   }
 
   function handleRemoveDetail(key) {
-    setWorkDetails(workDetails.filter((detailObj) => detailObj.key !== key));
+    setDetails(details.filter((detailObj) => detailObj.key !== key));
   }
 
   function handleCancelBtn() {
@@ -72,7 +72,7 @@ function WorkItem({
             endYear,
             title: document.querySelector("#workTitle").value,
             address: document.querySelector("#workAddress").value,
-            details: workDetails.filter((detailObj) => !!detailObj.text),
+            details: details.filter((detailObj) => !!detailObj.text),
           };
         }
         return workObj;
@@ -131,8 +131,8 @@ function WorkItem({
         <input type="text" id="workAddress" defaultValue={workObj.address} />
       </div>
       <div className="detailsGroup">
-        {workDetails.length > 0 && <label>Details</label>}
-        {workDetails.map((detailObj) => (
+        {details.length > 0 && <label>Details</label>}
+        {details.map((detailObj) => (
           <div key={detailObj.key} className="detailsRow">
             <input
               type="text"

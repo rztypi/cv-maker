@@ -2,6 +2,20 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+
+  .workItem {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .itemSelectBtn {
+      flex-grow: 1;
+    }
+
+    .deleteListItemBtn {
+      position: absolute;
+    }
+  }
 }
 
 .dateGroup {
@@ -40,19 +54,5 @@
     input {
       width: 100%;
     }
-  }
-}
-
-.workItem {
-  position: relative;
-  display: flex;
-  align-items: center;
-
-  .itemSelectBtn {
-    flex-grow: 1;
-  }
-
-  .deleteListItemBtn {
-    position: absolute;
   }
 }
