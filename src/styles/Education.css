@@ -1,0 +1,19 @@
+.educDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .educItem {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .itemSelectBtn {
+      flex-grow: 1;
+    }
+
+    .deleteListItemBtn {
+      position: absolute;
+    }
+  }
+}
