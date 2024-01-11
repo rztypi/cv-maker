@@ -13,7 +13,7 @@ function WorkItem({
 }) {
   const workObj = workArray.find((workObj) => workObj.key === activeKey);
   const [workDetails, setWorkDetails] = useState([...workObj.details]);
-  const [present, setPresent] = useState(false);
+  const [present, setPresent] = useState(workObj.endYear === "Present");
 
   function handleAddDetail() {
     setWorkDetails(
@@ -52,7 +52,7 @@ function WorkItem({
     );
     let endYear, endMonth;
     if (present) {
-      endMonth = "Present";
+      endYear = "Present";
     } else {
       [endYear, endMonth] = getYearMonthFromFormat(
         document.querySelector("#workEndDate").value
