@@ -88,16 +88,23 @@ function GenInfo({ cvData, setCvData }) {
                 handleChangeLink(event, linkObj.key, "linkRef")
               }
             />
-            <button type="button" onClick={() => handleRemoveLink(linkObj.key)}>
+            <button
+              type="button"
+              className="deleteListItemBtn"
+              onClick={() => handleRemoveLink(linkObj.key)}
+            >
               <span className="material-symbols-outlined deleteIcon">
                 delete
               </span>
             </button>
           </div>
         ))}
-        <button type="button" className="addLink" onClick={handleAddLink}>
-          <span className="material-symbols-outlined linkIcon">link</span> add
-          link
+        <button
+          type="button"
+          className="addListItemBtn"
+          onClick={handleAddLink}
+        >
+          <span className="material-symbols-outlined">add_link</span> add link
         </button>
       </div>
       <button type="submit">Save</button>

@@ -117,7 +117,7 @@ function WorkItem({ workObj, activeKey, cvData, setCvData }) {
             />
             <button
               type="button"
-              className="removeItemBtn"
+              className="deleteListItemBtn"
               onClick={() => handleRemoveDetail(detailObj.key)}
             >
               <span className="material-symbols-outlined deleteIcon">
@@ -126,11 +126,20 @@ function WorkItem({ workObj, activeKey, cvData, setCvData }) {
             </button>
           </div>
         ))}
-        <button type="button" className="addDetail" onClick={handleAddDetail}>
+        <button
+          type="button"
+          className="addListItemBtn"
+          onClick={handleAddDetail}
+        >
           <span className="material-symbols-outlined">add</span> add detail
         </button>
       </div>
-      <button type="submit">Save</button>
+      <div className="bottomBtns">
+        <button type="button" className="cancelBtn">
+          Cancel
+        </button>
+        <button type="submit">Save</button>
+      </div>
     </form>
   );
 }
@@ -138,31 +147,35 @@ function WorkItem({ workObj, activeKey, cvData, setCvData }) {
 function Work({ cvData, setCvData }) {
   const [activeKey, setActiveKey] = useState(null);
 
+  if (activeKey !== null) {
+    return (
+      <WorkItem
+        workObj={cvData.work.find((workObj) => workObj.key === activeKey)}
+        activeKey={activeKey}
+        cvData={cvData}
+        setCvData={setCvData}
+      ></WorkItem>
+    );
+  }
+
   return (
     <div className="workDiv">
-      {activeKey !== null ? (
-        <WorkItem
-          workObj={cvData.work.find((workObj) => workObj.key === activeKey)}
-          activeKey={activeKey}
-          cvData={cvData}
-          setCvData={setCvData}
-        ></WorkItem>
-      ) : (
-        <>
-          {cvData.work.map((workObj) => (
-            <button
-              key={workObj.key}
-              type="button"
-              onClick={() => {
-                setActiveKey(workObj.key);
-              }}
-            >
-              {workObj.name}
-            </button>
-          ))}
-          <button type="button">add work experience</button>
-        </>
-      )}
+      {cvData.work.map((workObj) => (
+        <button
+          key={workObj.key}
+          type="button"
+          className="itemSelectBtn"
+          onClick={() => {
+            setActiveKey(workObj.key);
+          }}
+        >
+          {workObj.name}
+        </button>
+      ))}
+      <button type="button" className="addListItemBtn">
+        <span className="material-symbols-outlined">add</span> add work
+        experience
+      </button>
     </div>
   );
 }

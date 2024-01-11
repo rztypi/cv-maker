@@ -1,3 +1,7 @@
+#genInfoForm button[type="submit"] {
+  margin-top: 24px;
+}
+
 .linkGroup {
   display: flex;
   flex-direction: column;
@@ -16,56 +20,5 @@
     label {
       width: 100%;
     }
-
-    button {
-      position: absolute;
-      right: -36px;
-      height: 1.5rem;
-      width: 1.5rem;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: transparent;
-      border: none;
-      opacity: 0.8;
-    }
-
-    button:hover {
-      opacity: 0.9;
-    }
-
-    button:active {
-      opacity: 1;
-    }
-
-    .deleteIcon {
-      font-size: 1.4rem;
-    }
-  }
-
-  .addLink {
-    align-self: center;
-    padding: 0 12px;
-    margin-top: 6px;
-    display: flex;
-    justify-content: center;
-    gap: 4px;
-    background-color: transparent;
-    border: none;
-    opacity: 0.8;
-    font-size: 0.9rem;
-
-    .linkIcon {
-      font-size: 1.4rem;
-    }
-  }
-
-  .addLink:hover {
-    opacity: 0.9;
-  }
-
-  .addLink:active {
-    opacity: 1;
   }
 }

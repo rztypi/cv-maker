@@ -66,10 +66,10 @@ function App() {
   const [cvData, setCvData] = useState(defaultCvData);
 
   return (
-    <>
+    <div id="app">
       <Form cvData={cvData} setCvData={setCvData} />
       <Cv cvData={cvData} />
-    </>
+    </div>
   );
 }
 
