@@ -13,6 +13,7 @@ function WorkItem({
 }) {
   const workObj = workArray.find((workObj) => workObj.key === activeKey);
   const [workDetails, setWorkDetails] = useState([...workObj.details]);
+  const [present, setPresent] = useState(false);
 
   function handleAddDetail() {
     setWorkDetails(
@@ -49,9 +50,14 @@ function WorkItem({
     const [startYear, startMonth] = getYearMonthFromFormat(
       document.querySelector("#workStartDate").value
     );
-    const [endYear, endMonth] = getYearMonthFromFormat(
-      document.querySelector("#workEndDate").value
-    );
+    let endYear, endMonth;
+    if (present) {
+      endMonth = "Present";
+    } else {
+      [endYear, endMonth] = getYearMonthFromFormat(
+        document.querySelector("#workEndDate").value
+      );
+    }
 
     setCvData({
       ...cvData,
@@ -86,7 +92,12 @@ function WorkItem({
       </div>
       <div className="dateGroup">
         <div className="checkbox">
-          <input type="checkbox" id="present" />
+          <input
+            type="checkbox"
+            id="present"
+            checked={present}
+            onChange={() => setPresent(!present)}
+          />
           <label htmlFor="present">I am currently working here</label>
         </div>
         <div className="dateRow">
@@ -110,6 +121,7 @@ function WorkItem({
                 workObj.endYear,
                 workObj.endMonth
               )}
+              disabled={present}
             />
           </div>
         </div>
