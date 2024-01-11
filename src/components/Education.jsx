@@ -72,19 +72,40 @@ function EducationItem({
   return (
     <form onSubmit={handleSaveEduc} id="educForm">
       <div className="inputLabel">
-        <label htmlFor="educName">University Name</label>
-        <input type="text" id="educName" defaultValue={educObj.name} />
+        <label htmlFor="educName">
+          University Name
+          <span className="required" aria-hidden="true">
+            *
+          </span>
+        </label>
+        <input type="text" id="educName" defaultValue={educObj.name} required />
       </div>
       <div className="inputLabel">
-        <label htmlFor="educDegree">Degree</label>
-        <input type="text" id="educDegree" defaultValue={educObj.degree} />
+        <label htmlFor="educDegree">
+          Degree
+          <span className="required" aria-hidden="true">
+            *
+          </span>
+        </label>
+        <input
+          type="text"
+          id="educDegree"
+          defaultValue={educObj.degree}
+          required
+        />
       </div>
       <div className="inputLabel">
-        <label htmlFor="educDate">Graduation Date</label>
+        <label htmlFor="educDate">
+          Graduation Date{" "}
+          <span className="required" aria-hidden="true">
+            *
+          </span>
+        </label>
         <input
           type="month"
           id="educDate"
           defaultValue={getFormatFromYearMonth(educObj.year, educObj.month)}
+          required
         />
       </div>
       <div className="inputLabel">
@@ -105,7 +126,10 @@ function EducationItem({
               className="deleteListItemBtn"
               onClick={() => handleRemoveDetail(detailObj.key)}
             >
-              <span className="material-symbols-outlined deleteIcon">
+              <span
+                className="material-symbols-outlined deleteIcon"
+                aria-hidden="true"
+              >
                 delete
               </span>
             </button>
@@ -116,7 +140,10 @@ function EducationItem({
           className="addListItemBtn"
           onClick={handleAddDetail}
         >
-          <span className="material-symbols-outlined">add</span> add detail
+          <span className="material-symbols-outlined" aria-hidden="true">
+            add
+          </span>
+          add detail
         </button>
       </div>
       <div className="bottomBtns">
@@ -189,7 +216,12 @@ function Education({ cvData, setCvData }) {
             className="deleteListItemBtn"
             onClick={() => handleRemoveEducBtn(educObj.key)}
           >
-            <span className="material-symbols-outlined deleteIcon">delete</span>
+            <span
+              className="material-symbols-outlined deleteIcon"
+              aria-hidden="true"
+            >
+              delete
+            </span>
           </button>
         </div>
       ))}
@@ -198,7 +230,10 @@ function Education({ cvData, setCvData }) {
         className="addListItemBtn"
         onClick={handleAddEducBtn}
       >
-        <span className="material-symbols-outlined">add</span> add education
+        <span className="material-symbols-outlined" aria-hidden="true">
+          add
+        </span>{" "}
+        add education
       </button>
     </div>
   );

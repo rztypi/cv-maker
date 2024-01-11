@@ -48,12 +48,22 @@ function GenInfo({ cvData, setCvData }) {
   return (
     <form onSubmit={handleSaveGenInfo} id="genInfoForm">
       <div className="inputLabel">
-        <label htmlFor="name">Name</label>
-        <input type="text" id="name" defaultValue={cvData.name} />
+        <label htmlFor="name">
+          Name
+          <span className="required" aria-hidden="true">
+            *
+          </span>
+        </label>
+        <input type="text" id="name" defaultValue={cvData.name} required />
       </div>
       <div className="inputLabel">
-        <label htmlFor="email">Email</label>
-        <input type="text" id="email" defaultValue={cvData.email} />
+        <label htmlFor="email">
+          Email
+          <span className="required" aria-hidden="true">
+            *
+          </span>
+        </label>
+        <input type="email" id="email" defaultValue={cvData.email} required />
       </div>
       <div className="inputLabel">
         <label htmlFor="phone">Phone</label>
@@ -81,7 +91,7 @@ function GenInfo({ cvData, setCvData }) {
               }
             />
             <input
-              type="text"
+              type="url"
               className="linkRef"
               defaultValue={linkObj.linkRef}
               onChange={(event) =>
@@ -93,7 +103,10 @@ function GenInfo({ cvData, setCvData }) {
               className="deleteListItemBtn"
               onClick={() => handleRemoveLink(linkObj.key)}
             >
-              <span className="material-symbols-outlined deleteIcon">
+              <span
+                className="material-symbols-outlined deleteIcon"
+                aria-hidden="true"
+              >
                 delete
               </span>
             </button>
@@ -104,7 +117,10 @@ function GenInfo({ cvData, setCvData }) {
           className="addListItemBtn"
           onClick={handleAddLink}
         >
-          <span className="material-symbols-outlined">add_link</span> add link
+          <span className="material-symbols-outlined" aria-hidden="true">
+            add_link
+          </span>
+          add link
         </button>
       </div>
       <button type="submit">Save</button>

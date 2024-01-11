@@ -83,12 +83,27 @@ function WorkItem({
   return (
     <form onSubmit={handleSaveWork} id="workForm">
       <div className="inputLabel">
-        <label htmlFor="workName">Company Name</label>
-        <input type="text" id="workName" defaultValue={workObj.name} />
+        <label htmlFor="workName">
+          Company Name
+          <span className="required" aria-hidden="true">
+            *
+          </span>
+        </label>
+        <input type="text" id="workName" defaultValue={workObj.name} required />
       </div>
       <div className="inputLabel">
-        <label htmlFor="workTitle">Title</label>
-        <input type="text" id="workTitle" defaultValue={workObj.title} />
+        <label htmlFor="workTitle">
+          Title
+          <span className="required" aria-hidden="true">
+            *
+          </span>
+        </label>
+        <input
+          type="text"
+          id="workTitle"
+          defaultValue={workObj.title}
+          required
+        />
       </div>
       <div className="dateGroup">
         <div className="checkbox">
@@ -102,7 +117,12 @@ function WorkItem({
         </div>
         <div className="dateRow">
           <div className="inputLabel">
-            <label htmlFor="workStartDate">Start Date</label>
+            <label htmlFor="workStartDate">
+              Start Date
+              <span className="required" aria-hidden="true">
+                *
+              </span>
+            </label>
             <input
               type="month"
               id="workStartDate"
@@ -110,6 +130,7 @@ function WorkItem({
                 workObj.startYear,
                 workObj.startMonth
               )}
+              required
             />
           </div>
           <div className="inputLabel">
@@ -144,7 +165,10 @@ function WorkItem({
               className="deleteListItemBtn"
               onClick={() => handleRemoveDetail(detailObj.key)}
             >
-              <span className="material-symbols-outlined deleteIcon">
+              <span
+                className="material-symbols-outlined deleteIcon"
+                aria-hidden="true"
+              >
                 delete
               </span>
             </button>
@@ -155,7 +179,10 @@ function WorkItem({
           className="addListItemBtn"
           onClick={handleAddDetail}
         >
-          <span className="material-symbols-outlined">add</span> add detail
+          <span className="material-symbols-outlined" aria-hidden="true">
+            add
+          </span>
+          add detail
         </button>
       </div>
       <div className="bottomBtns">
@@ -230,7 +257,12 @@ function Work({ cvData, setCvData }) {
             className="deleteListItemBtn"
             onClick={() => handleRemoveWorkBtn(workObj.key)}
           >
-            <span className="material-symbols-outlined deleteIcon">delete</span>
+            <span
+              className="material-symbols-outlined deleteIcon"
+              aria-hidden="true"
+            >
+              delete
+            </span>
           </button>
         </div>
       ))}
@@ -239,8 +271,10 @@ function Work({ cvData, setCvData }) {
         className="addListItemBtn"
         onClick={handleAddWorkBtn}
       >
-        <span className="material-symbols-outlined">add</span> add work
-        experience
+        <span className="material-symbols-outlined" aria-hidden="true">
+          add
+        </span>
+        add work experience
       </button>
     </div>
   );

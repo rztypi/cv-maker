@@ -16,7 +16,10 @@ function Accordion({ title, children }) {
     <div className={accordionClass}>
       <div className="accordionHead" onClick={() => setIsOpen(!isOpen)}>
         <h3>{title}</h3>
-        <span className="material-symbols-outlined expandIcon">
+        <span
+          className="material-symbols-outlined expandIcon"
+          aria-hidden="true"
+        >
           expand_more
         </span>
       </div>
