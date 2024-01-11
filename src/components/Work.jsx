@@ -3,7 +3,15 @@ import { v4 as uuidv4 } from "uuid";
 import { getYearMonthFromFormat, getFormatFromYearMonth } from "../utils.js";
 import "../styles/Work.css";
 
-function WorkItem({ workObj, activeKey, setActiveKey, cvData, setCvData }) {
+function WorkItem({
+  activeKey,
+  setActiveKey,
+  cvData,
+  setCvData,
+  workArray,
+  setWorkArray,
+}) {
+  const workObj = workArray.find((workObj) => workObj.key === activeKey);
   const [workDetails, setWorkDetails] = useState([...workObj.details]);
 
   function handleAddDetail() {
@@ -32,6 +40,7 @@ function WorkItem({ workObj, activeKey, setActiveKey, cvData, setCvData }) {
 
   function handleCancelBtn() {
     setActiveKey(null);
+    setWorkArray([...cvData.work]);
   }
 
   function handleSaveWork(event) {
@@ -43,23 +52,22 @@ function WorkItem({ workObj, activeKey, setActiveKey, cvData, setCvData }) {
     const [endYear, endMonth] = getYearMonthFromFormat(
       document.querySelector("#workEndDate").value
     );
-    const newWorkObj = {
-      key: activeKey,
-      name: document.querySelector("#workName").value,
-      startMonth,
-      startYear,
-      endMonth,
-      endYear,
-      title: document.querySelector("#workTitle").value,
-      address: document.querySelector("#workAddress").value,
-      details: workDetails.filter((detailObj) => !!detailObj.text),
-    };
 
     setCvData({
       ...cvData,
-      work: cvData.work.map((workObj) => {
+      work: workArray.map((workObj) => {
         if (workObj.key === activeKey) {
-          return newWorkObj;
+          return {
+            key: activeKey,
+            name: document.querySelector("#workName").value,
+            startMonth,
+            startYear,
+            endMonth,
+            endYear,
+            title: document.querySelector("#workTitle").value,
+            address: document.querySelector("#workAddress").value,
+            details: workDetails.filter((detailObj) => !!detailObj.text),
+          };
         }
         return workObj;
       }),
@@ -150,22 +158,42 @@ function WorkItem({ workObj, activeKey, setActiveKey, cvData, setCvData }) {
 
 function Work({ cvData, setCvData }) {
   const [activeKey, setActiveKey] = useState(null);
+  const [workArray, setWorkArray] = useState([...cvData.work]);
+
+  function handleAddWorkBtn() {
+    const newKey = uuidv4();
+    setActiveKey(newKey);
+    setWorkArray(
+      workArray.concat({
+        key: newKey,
+        name: "",
+        startMonth: "",
+        startYear: "",
+        endMonth: "",
+        endYear: "",
+        title: "",
+        address: "",
+        details: [],
+      })
+    );
+  }
 
   if (activeKey !== null) {
     return (
       <WorkItem
-        workObj={cvData.work.find((workObj) => workObj.key === activeKey)}
         activeKey={activeKey}
         setActiveKey={setActiveKey}
         cvData={cvData}
         setCvData={setCvData}
+        workArray={workArray}
+        setWorkArray={setWorkArray}
       ></WorkItem>
     );
   }
 
   return (
     <div className="workDiv">
-      {cvData.work.map((workObj) => (
+      {workArray.map((workObj) => (
         <button
           key={workObj.key}
           type="button"
@@ -177,7 +205,11 @@ function Work({ cvData, setCvData }) {
           {workObj.name}
         </button>
       ))}
-      <button type="button" className="addListItemBtn">
+      <button
+        type="button"
+        className="addListItemBtn"
+        onClick={handleAddWorkBtn}
+      >
         <span className="material-symbols-outlined">add</span> add work
         experience
       </button>
