@@ -201,15 +201,17 @@ function CvPdf({ cvData }) {
             ))}
           </Section>
         )}
-        <Section title="education">
-          {cvData.education.map((item, index) => (
-            <EducationItem
-              key={item.key}
-              isNotLast={index < cvData.education.length - 1}
-              {...item}
-            />
-          ))}
-        </Section>
+        {cvData.education.length > 0 && (
+          <Section title="education">
+            {cvData.education.map((item, index) => (
+              <EducationItem
+                key={item.key}
+                isNotLast={index < cvData.education.length - 1}
+                {...item}
+              />
+            ))}
+          </Section>
+        )}
       </Page>
     </Document>
   );
