@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { getYearMonthFromFormat, getFormatFromYearMonth } from "../utils.js";
 import "../styles/Work.css";
 
-function WorkItem({ workObj, activeKey, cvData, setCvData }) {
+function WorkItem({ workObj, activeKey, setActiveKey, cvData, setCvData }) {
   const [workDetails, setWorkDetails] = useState([...workObj.details]);
 
   function handleAddDetail() {
@@ -28,6 +28,10 @@ function WorkItem({ workObj, activeKey, cvData, setCvData }) {
 
   function handleRemoveDetail(key) {
     setWorkDetails(workDetails.filter((detailObj) => detailObj.key !== key));
+  }
+
+  function handleCancelBtn() {
+    setActiveKey(null);
   }
 
   function handleSaveWork(event) {
@@ -135,7 +139,7 @@ function WorkItem({ workObj, activeKey, cvData, setCvData }) {
         </button>
       </div>
       <div className="bottomBtns">
-        <button type="button" className="cancelBtn">
+        <button type="button" className="cancelBtn" onClick={handleCancelBtn}>
           Cancel
         </button>
         <button type="submit">Save</button>
@@ -152,6 +156,7 @@ function Work({ cvData, setCvData }) {
       <WorkItem
         workObj={cvData.work.find((workObj) => workObj.key === activeKey)}
         activeKey={activeKey}
+        setActiveKey={setActiveKey}
         cvData={cvData}
         setCvData={setCvData}
       ></WorkItem>
