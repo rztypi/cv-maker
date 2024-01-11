@@ -190,6 +190,15 @@ function Work({ cvData, setCvData }) {
     );
   }
 
+  function handleRemoveWorkBtn(key) {
+    const newWorkArray = workArray.filter((workObj) => workObj.key !== key);
+    setWorkArray(newWorkArray);
+    setCvData({
+      ...cvData,
+      work: newWorkArray,
+    });
+  }
+
   if (activeKey !== null) {
     return (
       <WorkItem
@@ -206,16 +215,24 @@ function Work({ cvData, setCvData }) {
   return (
     <div className="workDiv">
       {workArray.map((workObj) => (
-        <button
-          key={workObj.key}
-          type="button"
-          className="itemSelectBtn"
-          onClick={() => {
-            setActiveKey(workObj.key);
-          }}
-        >
-          {workObj.name}
-        </button>
+        <div key={workObj.key} className="workItem">
+          <button
+            type="button"
+            className="itemSelectBtn"
+            onClick={() => {
+              setActiveKey(workObj.key);
+            }}
+          >
+            {workObj.name}
+          </button>
+          <button
+            type="button"
+            className="deleteListItemBtn"
+            onClick={() => handleRemoveWorkBtn(workObj.key)}
+          >
+            <span className="material-symbols-outlined deleteIcon">delete</span>
+          </button>
+        </div>
       ))}
       <button
         type="button"

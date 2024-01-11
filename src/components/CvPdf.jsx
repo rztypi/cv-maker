@@ -190,15 +190,17 @@ function CvPdf({ cvData }) {
           address={cvData.address}
           links={cvData.links}
         ></GenInfo>
-        <Section title="work experience">
-          {cvData.work.map((item, index) => (
-            <WorkItem
-              key={item.key}
-              isNotLast={index < cvData.work.length - 1}
-              {...item}
-            />
-          ))}
-        </Section>
+        {cvData.work.length > 0 && (
+          <Section title="work experience">
+            {cvData.work.map((item, index) => (
+              <WorkItem
+                key={item.key}
+                isNotLast={index < cvData.work.length - 1}
+                {...item}
+              />
+            ))}
+          </Section>
+        )}
         <Section title="education">
           {cvData.education.map((item, index) => (
             <EducationItem
