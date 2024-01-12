@@ -167,10 +167,10 @@ function WorkItem({
         </button>
       </div>
       <div className="bottomBtns">
+        <button type="submit">Save</button>
         <button type="button" className="cancelBtn" onClick={handleCancelBtn}>
           Cancel
         </button>
-        <button type="submit">Save</button>
       </div>
     </form>
   );
