@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { getYearMonthFromFormat, getFormatFromYearMonth } from "../utils.js";
 import "../styles/Work.css";
 
 function WorkItem({
@@ -13,7 +12,7 @@ function WorkItem({
 }) {
   const workObj = workArray.find((workObj) => workObj.key === activeKey);
   const [details, setDetails] = useState(workObj.details);
-  const [present, setPresent] = useState(workObj.endYear === "Present");
+  const [present, setPresent] = useState(workObj.endDate === "present");
 
   function handleAddDetail() {
     setDetails(
@@ -47,19 +46,6 @@ function WorkItem({
   function handleSaveWork(event) {
     event.preventDefault();
 
-    const [startYear, startMonth] = getYearMonthFromFormat(
-      document.querySelector("#workStartDate").value
-    );
-
-    let endYear, endMonth;
-    if (present) {
-      endYear = "Present";
-    } else {
-      [endYear, endMonth] = getYearMonthFromFormat(
-        document.querySelector("#workEndDate").value
-      );
-    }
-
     setCvData({
       ...cvData,
       work: workArray.map((workObj) => {
@@ -67,10 +53,10 @@ function WorkItem({
           return {
             key: activeKey,
             name: document.querySelector("#workName").value,
-            startMonth,
-            startYear,
-            endMonth,
-            endYear,
+            startDate: document.querySelector("#workStartDate").value,
+            endDate: present
+              ? "present"
+              : document.querySelector("#workEndDate").value,
             title: document.querySelector("#workTitle").value,
             address: document.querySelector("#workAddress").value,
             details: details.filter((detailObj) => !!detailObj.text),
@@ -127,10 +113,7 @@ function WorkItem({
             <input
               type="month"
               id="workStartDate"
-              defaultValue={getFormatFromYearMonth(
-                workObj.startYear,
-                workObj.startMonth
-              )}
+              defaultValue={workObj.startDate}
               required
             />
           </div>
@@ -139,10 +122,7 @@ function WorkItem({
             <input
               type="month"
               id="workEndDate"
-              defaultValue={getFormatFromYearMonth(
-                workObj.endYear,
-                workObj.endMonth
-              )}
+              defaultValue={workObj.endDate}
               disabled={present}
             />
           </div>
@@ -207,10 +187,8 @@ function Work({ cvData, setCvData }) {
       workArray.concat({
         key: newKey,
         name: "",
-        startMonth: "",
-        startYear: "",
-        endMonth: "",
-        endYear: "",
+        startDate: "",
+        endDate: "",
         title: "",
         address: "",
         details: [],

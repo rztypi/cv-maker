@@ -20,10 +20,8 @@ const defaultCvData = {
     {
       key: uuidv4(),
       name: "Company Name #1",
-      startMonth: "Jan",
-      startYear: "2000",
-      endMonth: "Dec",
-      endYear: "2024",
+      startDate: "2000-01",
+      endDate: "2024-12",
       title: "Job Title",
       address: "Address",
       details: [
@@ -34,10 +32,8 @@ const defaultCvData = {
     {
       key: uuidv4(),
       name: "Company Name #2",
-      startMonth: "Jan",
-      startYear: "2000",
-      endMonth: "Dec",
-      endYear: "2024",
+      startDate: "2000-01",
+      endDate: "2024-12",
       title: "Job Title",
       address: "Address",
       details: [
@@ -50,8 +46,7 @@ const defaultCvData = {
     {
       key: uuidv4(),
       name: "University Name",
-      month: "Jan",
-      year: "2000",
+      endDate: "2024-12",
       degree: "Degree",
       address: "Address",
       details: [

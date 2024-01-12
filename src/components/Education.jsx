@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { getYearMonthFromFormat, getFormatFromYearMonth } from "../utils.js";
 import "../styles/Education.css";
 
 function EducationItem({
@@ -46,10 +45,6 @@ function EducationItem({
   function handleSaveEduc(event) {
     event.preventDefault();
 
-    const [year, month] = getYearMonthFromFormat(
-      document.querySelector("#educDate").value
-    );
-
     setCvData({
       ...cvData,
       education: educArray.map((educObj) => {
@@ -57,8 +52,7 @@ function EducationItem({
           return {
             key: activeKey,
             name: document.querySelector("#educName").value,
-            month,
-            year,
+            endDate: document.querySelector("#educDate").value,
             degree: document.querySelector("#educDegree").value,
             address: document.querySelector("#educAddress").value,
             details: details.filter((detailObj) => !!detailObj.text),
@@ -104,7 +98,7 @@ function EducationItem({
         <input
           type="month"
           id="educDate"
-          defaultValue={getFormatFromYearMonth(educObj.year, educObj.month)}
+          defaultValue={educObj.endDate}
           required
         />
       </div>
@@ -167,8 +161,7 @@ function Education({ cvData, setCvData }) {
       educArray.concat({
         key: newKey,
         name: "",
-        month: "",
-        year: "",
+        endDate: "",
         degree: "",
         address: "",
         details: [],

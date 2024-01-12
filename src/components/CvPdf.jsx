@@ -10,6 +10,7 @@ import {
   Line,
 } from "@react-pdf/renderer";
 import { Fragment } from "react";
+import { convertDateFormatToText } from "../utils.js";
 
 Font.register({
   family: "Garamond",
@@ -122,10 +123,8 @@ function GenInfo({ name, email, phone, address, links }) {
 function WorkItem({
   isNotLast,
   name,
-  startMonth,
-  startYear,
-  endMonth,
-  endYear,
+  startDate,
+  endDate,
   title,
   address,
   details,
@@ -135,7 +134,8 @@ function WorkItem({
       <View style={styles.itemBoldHeader}>
         <Text>{name}</Text>
         <Text>
-          {startMonth} {startYear} - {endMonth} {endYear}
+          {convertDateFormatToText(startDate)} -{" "}
+          {convertDateFormatToText(endDate)}
         </Text>
       </View>
       <View style={styles.itemItalicHeader}>
@@ -150,22 +150,12 @@ function WorkItem({
   );
 }
 
-function EducationItem({
-  isNotLast,
-  name,
-  month,
-  year,
-  degree,
-  address,
-  details,
-}) {
+function EducationItem({ isNotLast, name, endDate, degree, address, details }) {
   return (
     <View>
       <View style={styles.itemBoldHeader}>
         <Text>{name}</Text>
-        <Text>
-          {month} {year}
-        </Text>
+        <Text>{convertDateFormatToText(endDate)}</Text>
       </View>
       <View style={styles.itemItalicHeader}>
         <Text>{degree}</Text>
