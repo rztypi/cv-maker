@@ -201,3 +201,22 @@
   background-color: #7f7f7f;
   color: initial;
 }
+
+.detailsGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  label {
+    margin-bottom: -6px;
+  }
+
+  .detailsRow {
+    position: relative;
+    display: flex;
+
+    input {
+      width: 100%;
+    }
+  }
+}

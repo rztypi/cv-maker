@@ -12,7 +12,7 @@ function WorkItem({
   setWorkArray,
 }) {
   const workObj = workArray.find((workObj) => workObj.key === activeKey);
-  const [details, setDetails] = useState([...workObj.details]);
+  const [details, setDetails] = useState(workObj.details);
   const [present, setPresent] = useState(workObj.endYear === "Present");
 
   function handleAddDetail() {
@@ -41,7 +41,7 @@ function WorkItem({
 
   function handleCancelBtn() {
     setActiveKey(null);
-    setWorkArray([...cvData.work]);
+    setWorkArray(cvData.work);
   }
 
   function handleSaveWork(event) {
@@ -50,6 +50,7 @@ function WorkItem({
     const [startYear, startMonth] = getYearMonthFromFormat(
       document.querySelector("#workStartDate").value
     );
+
     let endYear, endMonth;
     if (present) {
       endYear = "Present";
@@ -197,7 +198,7 @@ function WorkItem({
 
 function Work({ cvData, setCvData }) {
   const [activeKey, setActiveKey] = useState(null);
-  const [workArray, setWorkArray] = useState([...cvData.work]);
+  const [workArray, setWorkArray] = useState(cvData.work);
 
   function handleAddWorkBtn() {
     const newKey = uuidv4();

@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import "../styles/Section.css";
 
 function Section({ cvData, setCvData, secObj }) {
-  const [contentArray, setContentArray] = useState([...secObj.content]);
+  const [contentArray, setContentArray] = useState(secObj.content);
 
   function handleAddContent(type) {
     setContentArray(

@@ -12,7 +12,7 @@ function EducationItem({
   setEducArray,
 }) {
   const educObj = educArray.find((educObj) => educObj.key === activeKey);
-  const [details, setDetails] = useState([...educObj.details]);
+  const [details, setDetails] = useState(educObj.details);
 
   function handleAddDetail() {
     setDetails(
@@ -40,7 +40,7 @@ function EducationItem({
 
   function handleCancelBtn() {
     setActiveKey(null);
-    setEducArray([...cvData.education]);
+    setEducArray(cvData.education);
   }
 
   function handleSaveEduc(event) {
@@ -158,7 +158,7 @@ function EducationItem({
 
 function Education({ cvData, setCvData }) {
   const [activeKey, setActiveKey] = useState(null);
-  const [educArray, setEducArray] = useState([...cvData.education]);
+  const [educArray, setEducArray] = useState(cvData.education);
 
   function handleAddEducBtn() {
     const newKey = uuidv4();

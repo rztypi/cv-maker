@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import "../styles/GenInfo.css";
 
 function GenInfo({ cvData, setCvData }) {
-  const [cvLinks, setCvLinks] = useState([...cvData.links]);
+  const [cvLinks, setCvLinks] = useState(cvData.links);
 
   function handleAddLink() {
     setCvLinks(
