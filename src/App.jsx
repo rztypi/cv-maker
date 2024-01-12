@@ -60,6 +60,29 @@ const defaultCvData = {
       ],
     },
   ],
+  sections: [
+    {
+      key: uuidv4(),
+      title: "Extra Section",
+      content: [
+        {
+          key: uuidv4(),
+          type: "heading",
+          text: "Heading",
+        },
+        {
+          key: uuidv4(),
+          type: "item",
+          text: "Item #1",
+        },
+        {
+          key: uuidv4(),
+          type: "item",
+          text: "Item #2",
+        },
+      ],
+    },
+  ],
 };
 
 function App() {

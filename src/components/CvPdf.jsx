@@ -67,7 +67,7 @@ function Br({ size = 12 }) {
   return <Text style={{ fontSize: size }}>{"\n"}</Text>;
 }
 
-function BulletItem({ text }) {
+function BulletItem({ children }) {
   return (
     <View
       style={{
@@ -81,7 +81,7 @@ function BulletItem({ text }) {
       >
         &bull;
       </Text>
-      <Text>{text}</Text>
+      <Text>{children}</Text>
     </View>
   );
 }
@@ -143,7 +143,7 @@ function WorkItem({
         <Text>{address}</Text>
       </View>
       {details.map((detail) => (
-        <BulletItem key={detail.key} text={detail.text} />
+        <BulletItem key={detail.key}>{detail.text}</BulletItem>
       ))}
       {isNotLast && <Br />}
     </View>
@@ -172,11 +172,19 @@ function EducationItem({
         <Text>{address}</Text>
       </View>
       {details.map((detail) => (
-        <BulletItem key={detail.key} text={detail.text} />
+        <BulletItem key={detail.key}>{detail.text}</BulletItem>
       ))}
       {isNotLast && <Br />}
     </View>
   );
+}
+
+function SectionItem({ type, text }) {
+  if (type === "heading") {
+    return <Text style={styles.bold}>{text}</Text>;
+  } else if (type === "item") {
+    return <BulletItem>{text}</BulletItem>;
+  }
 }
 
 function CvPdf({ cvData }) {
@@ -212,6 +220,13 @@ function CvPdf({ cvData }) {
             ))}
           </Section>
         )}
+        {cvData.sections.map((section) => (
+          <Section key={section.key} title={section.title}>
+            {section.content.map((content) => (
+              <SectionItem key={content.key} {...content}></SectionItem>
+            ))}
+          </Section>
+        ))}
       </Page>
     </Document>
   );
