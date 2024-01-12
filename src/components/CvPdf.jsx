@@ -75,14 +75,14 @@ function BulletItem({ children }) {
         flexDirection: "row",
       }}
     >
+      <Text>&bull;</Text>
       <Text
         style={{
-          marginRight: 12,
+          paddingLeft: 10,
         }}
       >
-        &bull;
+        {children}
       </Text>
-      <Text>{children}</Text>
     </View>
   );
 }
