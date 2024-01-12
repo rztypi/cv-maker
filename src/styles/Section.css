@@ -14,8 +14,4 @@
     justify-content: center;
     gap: 12px;
   }
-
-  button[type="submit"] {
-    margin-top: 24px;
-  }
 }

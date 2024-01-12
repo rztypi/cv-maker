@@ -54,6 +54,10 @@
       font-size: 0.9rem;
     }
   }
+
+  .addSectionBtn {
+    font-size: 1.1rem;
+  }
 }
 
 .accordions {
@@ -199,6 +203,20 @@
 
 .cancelBtn:hover {
   background-color: #7f7f7f;
+  color: initial;
+}
+
+.deleteBtn {
+  height: 2rem;
+  border: 2px solid red;
+  background-color: transparent;
+  color: red;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.deleteBtn:hover {
+  background-color: red;
   color: initial;
 }
 

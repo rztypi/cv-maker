@@ -26,6 +26,13 @@ function Section({ cvData, setCvData, secObj }) {
     );
   }
 
+  function handleDeleteBtn() {
+    setCvData({
+      ...cvData,
+      sections: cvData.sections.filter((section) => section.key != secObj.key),
+    });
+  }
+
   function handleSaveSection(event) {
     event.preventDefault();
 
@@ -94,7 +101,12 @@ function Section({ cvData, setCvData, secObj }) {
           add item
         </button>
       </div>
-      <button type="submit">Save</button>
+      <div className="bottomBtns">
+        <button type="submit">Save</button>
+        <button type="button" className="deleteBtn" onClick={handleDeleteBtn}>
+          Delete
+        </button>
+      </div>
     </form>
   );
 }

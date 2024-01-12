@@ -1,12 +1,13 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import GenInfo from "./GenInfo.jsx";
 import Work from "./Work.jsx";
 import Education from "./Education.jsx";
 import Section from "./Section.jsx";
 import "../styles/Form.css";
 
-function Accordion({ title, children }) {
-  const [isOpen, setIsOpen] = useState(false);
+function Accordion({ title, open = false, children }) {
+  const [isOpen, setIsOpen] = useState(open);
 
   let accordionClass = "accordion";
   if (isOpen) {
@@ -30,11 +31,22 @@ function Accordion({ title, children }) {
 }
 
 function Form({ cvData, setCvData }) {
+  function handleAddSectionBtn() {
+    setCvData({
+      ...cvData,
+      sections: cvData.sections.concat({
+        key: uuidv4(),
+        title: "New Section",
+        content: [],
+      }),
+    });
+  }
+
   return (
     <div id="form">
       <h1>Form</h1>
       <div className="accordions">
-        <Accordion title="General Information">
+        <Accordion title="General Information" open={true}>
           <GenInfo cvData={cvData} setCvData={setCvData}></GenInfo>
         </Accordion>
         <Accordion title="Work Experience">
@@ -52,6 +64,16 @@ function Form({ cvData, setCvData }) {
             ></Section>
           </Accordion>
         ))}
+        <button
+          type="button"
+          className="addListItemBtn addSectionBtn"
+          onClick={handleAddSectionBtn}
+        >
+          <span className="material-symbols-outlined" aria-hidden="true">
+            add
+          </span>
+          add section
+        </button>
       </div>
     </div>
   );
