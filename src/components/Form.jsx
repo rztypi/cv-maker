@@ -2,6 +2,7 @@ import { useState } from "react";
 import GenInfo from "./GenInfo.jsx";
 import Work from "./Work.jsx";
 import Education from "./Education.jsx";
+import Section from "./Section.jsx";
 import "../styles/Form.css";
 
 function Accordion({ title, children }) {
@@ -42,6 +43,15 @@ function Form({ cvData, setCvData }) {
         <Accordion title="Education">
           <Education cvData={cvData} setCvData={setCvData}></Education>
         </Accordion>
+        {cvData.sections.map((secObj) => (
+          <Accordion key={secObj.key} title={secObj.title}>
+            <Section
+              cvData={cvData}
+              setCvData={setCvData}
+              secObj={secObj}
+            ></Section>
+          </Accordion>
+        ))}
       </div>
     </div>
   );

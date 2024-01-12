@@ -1,0 +1,21 @@
+.sectionForm {
+  .heading,
+  .item {
+    display: flex;
+    align-items: center;
+
+    input {
+      flex-grow: 1;
+    }
+  }
+
+  .contentAddBtns {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  button[type="submit"] {
+    margin-top: 24px;
+  }
+}
