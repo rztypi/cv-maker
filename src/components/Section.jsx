@@ -26,6 +26,12 @@ function Section({ cvData, setCvData, secObj }) {
     );
   }
 
+  function handleRemoveContent(key) {
+    setContentArray(
+      contentArray.filter((contentObj) => contentObj.key !== key)
+    );
+  }
+
   function handleDeleteBtn() {
     setCvData({
       ...cvData,
@@ -64,18 +70,32 @@ function Section({ cvData, setCvData, secObj }) {
       <div className="detailsGroup">
         {contentArray.length > 0 && <label>Content</label>}
         {contentArray.map((content) => (
-          <div key={content.key} className={content.type}>
-            {content.type === "item" && (
-              <span className="material-symbols-outlined" aria-hidden="true">
-                arrow_right
+          <div key={content.key} className="detailsRow">
+            <div className={content.type}>
+              {content.type === "item" && (
+                <span className="material-symbols-outlined" aria-hidden="true">
+                  arrow_right
+                </span>
+              )}
+              <input
+                type="text"
+                id={content.key}
+                defaultValue={content.text}
+                onChange={(event) => handleContentChange(event, content.key)}
+              ></input>
+            </div>
+            <button
+              type="button"
+              className="deleteListItemBtn"
+              onClick={() => handleRemoveContent(content.key)}
+            >
+              <span
+                className="material-symbols-outlined deleteIcon"
+                aria-hidden="true"
+              >
+                delete
               </span>
-            )}
-            <input
-              type="text"
-              id={content.key}
-              defaultValue={content.text}
-              onChange={(event) => handleContentChange(event, content.key)}
-            ></input>
+            </button>
           </div>
         ))}
       </div>
