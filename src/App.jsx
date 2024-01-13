@@ -4,6 +4,7 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 import Form from "./components/Form.jsx";
 import Cv from "./components/Cv.jsx";
 import CvPdf from "./components/CvPdf.jsx";
+import Storage from "./storage.js";
 import "./styles/App.css";
 
 const defaultCvData = {
@@ -83,7 +84,14 @@ const defaultCvData = {
 };
 
 function App() {
-  const [cvData, setCvData] = useState(defaultCvData);
+  const [cvData, setCvDataState] = useState(
+    Storage.getStoredData() || defaultCvData
+  );
+
+  function setCvData(data) {
+    setCvDataState(data);
+    Storage.setStoredData(data);
+  }
 
   return (
     <div id="app">
