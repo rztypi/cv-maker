@@ -16,30 +16,13 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-
-      .downloadBtn {
-        height: 2rem;
-        padding: 0 6px;
-        border-radius: 2px;
-        font-weight: bold;
-        color: initial;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        transition: all 0.2s;
-      }
-
-      .downloadBtn:hover {
-        background-color: #7f7f7f;
-      }
     }
   }
 
   main {
     width: clamp(768px, 100%, 1280px);
     margin: auto;
-    padding: 24px 0;
+    padding-bottom: 24px;
     display: flex;
     justify-content: center;
   }
@@ -81,4 +64,27 @@
 #form,
 #cv {
   width: 50%;
+}
+
+.resetFormBtn,
+.downloadBtn {
+  height: 2rem;
+  padding: 0 6px;
+  margin: 12px 0;
+  border: none;
+  border-radius: 2px;
+  font-weight: bold;
+  background-color: transparent;
+  color: initial;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0.6;
+}
+
+.resetFormBtn:hover,
+.downloadBtn:hover {
+  background-color: #7f7f7f;
+  opacity: 1;
 }

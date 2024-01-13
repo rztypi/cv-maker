@@ -4,6 +4,7 @@ import GenInfo from "./GenInfo.jsx";
 import Work from "./Work.jsx";
 import Education from "./Education.jsx";
 import Section from "./Section.jsx";
+import Storage from "../storage.js";
 import "../styles/Form.css";
 
 function Accordion({ title, open = false, children }) {
@@ -44,6 +45,16 @@ function Form({ cvData, setCvData }) {
 
   return (
     <div id="form">
+      <button
+        type="button"
+        className="resetFormBtn"
+        onClick={() => setCvData(Storage.defaultCvData)}
+      >
+        <span className="material-symbols-outlined" aria-hidden="true">
+          restart_alt
+        </span>
+        Reset Form
+      </button>
       <div className="accordions">
         <Accordion title="General Information" open={true}>
           <GenInfo cvData={cvData} setCvData={setCvData}></GenInfo>
