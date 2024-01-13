@@ -44,7 +44,6 @@ function Form({ cvData, setCvData }) {
 
   return (
     <div id="form">
-      <h1>Form</h1>
       <div className="accordions">
         <Accordion title="General Information" open={true}>
           <GenInfo cvData={cvData} setCvData={setCvData}></GenInfo>

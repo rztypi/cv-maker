@@ -49,21 +49,17 @@ h6 {
 }
 
 /* Styles */
-
-:root {
-  color-scheme: dark;
-}
-
 * {
   transition: all 0.2s, color 0s, font-size 0s;
 }
 
-body {
+:root {
+  color-scheme: dark;
   font-family: "Poppins", sans-serif;
 }
 
 @media only screen and (max-width: 1280px) {
-  body {
+  :root {
     font-size: 90%;
   }
 }

@@ -5,7 +5,6 @@ import "../styles/Cv.css";
 function Cv({ cvData }) {
   return (
     <div id="cv">
-      <h1>CV</h1>
       <PDFViewer className="pdfviewer" showToolbar={false}>
         <CvPdf cvData={cvData} />
       </PDFViewer>

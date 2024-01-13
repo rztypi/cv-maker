@@ -1,8 +1,76 @@
 #app {
-  width: clamp(768px, 100%, 1280px);
-  margin: auto;
+  min-height: 100vh;
+  min-width: 768px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+
+  header {
+    height: 3.5rem;
+    background-color: rgba(127 127 127 / 0.2);
+
+    .headerContent {
+      height: 100%;
+      width: clamp(768px, 100%, 1280px);
+      padding: 0 12px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .downloadBtn {
+        height: 2rem;
+        padding: 0 6px;
+        border-radius: 2px;
+        font-weight: bold;
+        color: initial;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        transition: all 0.2s;
+      }
+
+      .downloadBtn:hover {
+        background-color: #7f7f7f;
+      }
+    }
+  }
+
+  main {
+    width: clamp(768px, 100%, 1280px);
+    margin: auto;
+    padding: 24px 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  footer {
+    margin-top: auto;
+    height: 2rem;
+    background-color: rgba(127 127 127 / 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    a {
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: initial;
+      opacity: 0.6;
+    }
+
+    a:hover {
+      opacity: 0.9;
+    }
+
+    a:active {
+      opacity: 1;
+    }
+  }
+
+  a {
+    cursor: pointer;
+  }
 
   button {
     cursor: pointer;

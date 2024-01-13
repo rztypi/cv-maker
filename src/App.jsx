@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import Form from "./components/Form.jsx";
 import Cv from "./components/Cv.jsx";
+import CvPdf from "./components/CvPdf.jsx";
 import "./styles/App.css";
 
 const defaultCvData = {
@@ -85,8 +87,34 @@ function App() {
 
   return (
     <div id="app">
-      <Form cvData={cvData} setCvData={setCvData} />
-      <Cv cvData={cvData} />
+      <header>
+        <div className="headerContent">
+          <h1>CV Maker</h1>
+          <PDFDownloadLink
+            document={<CvPdf cvData={cvData} />}
+            fileName="cv.pdf"
+            className="downloadBtn"
+          >
+            {({ loading }) =>
+              loading ? (
+                <span className="material-symbols-outlined">hourglass</span>
+              ) : (
+                <>
+                  <span className="material-symbols-outlined">download</span>
+                  Download PDF
+                </>
+              )
+            }
+          </PDFDownloadLink>
+        </div>
+      </header>
+      <main>
+        <Form cvData={cvData} setCvData={setCvData} />
+        <Cv cvData={cvData} />
+      </main>
+      <footer>
+        <a href="https://github.com/rztypi">rztypi</a>
+      </footer>
     </div>
   );
 }
