@@ -2,6 +2,7 @@ import { useState } from "react";
 import Form from "./components/Form.jsx";
 import Cv from "./components/Cv.jsx";
 import Storage from "./storage.js";
+import GithubLogo from "./assets/github-mark-white.png";
 import "./styles/App.css";
 
 function App() {
@@ -24,7 +25,10 @@ function App() {
         <Cv cvData={cvData} />
       </main>
       <footer>
-        <a href="https://github.com/rztypi">rztypi</a>
+        <a href="https://github.com/rztypi">
+          rztypi
+          <img src={GithubLogo} width="20" height="20"></img>
+        </a>
       </footer>
     </div>
   );
