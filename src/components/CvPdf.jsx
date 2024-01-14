@@ -11,19 +11,22 @@ import {
 } from "@react-pdf/renderer";
 import { Fragment } from "react";
 import { convertDateFormatToText } from "../utils.js";
+import EBGaramondRegular from "../assets/EBGaramond-Regular.ttf";
+import EBGaramondItalic from "../assets/EBGaramond-Italic.ttf";
+import EBGaramondBold from "../assets/EBGaramond-Bold.ttf";
 
 Font.register({
-  family: "Garamond",
+  family: "EBGaramond",
   fonts: [
-    { src: "src/assets/EBGaramond-Regular.ttf" },
-    { src: "src/assets/EBGaramond-Italic.ttf", fontStyle: "italic" },
-    { src: "src/assets/EBGaramond-Bold.ttf", fontWeight: 700 },
+    { src: EBGaramondRegular },
+    { src: EBGaramondItalic, fontStyle: "italic" },
+    { src: EBGaramondBold, fontWeight: 700 },
   ],
 });
 
 const styles = StyleSheet.create({
   page: {
-    fontFamily: "Garamond",
+    fontFamily: "EBGaramond",
     fontSize: 12,
     padding: "0.5in",
     lineHeight: 1.05,
