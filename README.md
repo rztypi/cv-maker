@@ -1,8 +1,8 @@
-# React + Vite
+# cv-maker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based CV maker. Using [react-pdf](https://react-pdf.org/), this CV maker easily generates and renders PDF-form resumes. All changes are stored in local storage which saves your progress.
 
-Currently, two official plugins are available:
+## Acknowledgments
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- CV template is heavily inspired by the [Sheets & Giggles Guy's Reddit Resume Advice](https://sheetsresume.com/resume-template/)
+- Icons from [Material Symbols](https://fonts.google.com/icons)
