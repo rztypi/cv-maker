@@ -50,7 +50,7 @@ h6 {
 
 /* Styles */
 * {
-  transition: all 0.2s, color 0s, font-size 0s;
+  transition: opacity 0.2s;
 }
 
 :root {
